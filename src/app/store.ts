@@ -1,6 +1,6 @@
-import type { Action, ThunkAction } from "@reduxjs/toolkit"
-import { configureStore } from "@reduxjs/toolkit"
-import { api } from "./services/api"
+import type { Action, ThunkAction } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import { api } from "./services/api";
 
 export const store = configureStore({
 	reducer: {
