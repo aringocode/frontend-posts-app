@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { Button } from '../button';
 
 type Props = {
@@ -16,4 +17,4 @@ export const NavButton: React.FC<Props> = ({ children, icon, href }) => {
 			</Link>
 		</Button>
 	)
-}
+};

@@ -43,4 +43,4 @@ export const Input: React.FC<Props> = (
 			errorMessage={`${errors[name]?.message ?? ''}`}
 		/>
 	)
-}
+};

@@ -48,30 +48,30 @@ export const Login: React.FC<Props> = ({ setSelected }) => {
 		<form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
 			<Input
 				control={control}
-				name="email"
+				name='email'
 				label='Email'
-				type="email"
+				type='email'
 				required='Required field'
 			/>
 			<Input
 				control={control}
-				name="password"
+				name='password'
 				label='Password'
-				type="password"
+				type='password'
 				required='Required field'
 			/>
 			<ErrorMessage error={error} />
-			<p className="text-center text-small">
-				Don't have an account?{" "}
+			<p className='text-center text-small'>
+				Don't have an account?{' '}
 				<Link
 					size='sm'
 					className='cursor-puinter'
-					onPress={() => setSelected("sign-up")}
+					onPress={() => setSelected('sign-up')}
 				>
 					Sign-up
 				</Link>
 			</p>
-			<div className="flex gap-2 justify-end">
+			<div className='flex gap-2 justify-end'>
 				<Button
 					fullWidth
 					color='primary'
