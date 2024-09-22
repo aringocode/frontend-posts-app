@@ -1,6 +1,6 @@
 export function hasErrorField (err: unknown): err is { data: { error: string }} {
 	return (
-		typeof err.message === 'object' &&
+		typeof err === 'object' &&
 		err !== null &&
 		'data' in err &&
 		typeof err.data === 'object' &&
