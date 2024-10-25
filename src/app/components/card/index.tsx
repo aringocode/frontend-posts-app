@@ -107,24 +107,16 @@ export const Card: React.FC<Props> = ({
 				await unlikePost(id).unwrap()
 			:
 				await likePost({ postId: id }).unwrap()
-			await refetchPosts();
-			// switch (cardFor) {
-			// 	case 'post':
-			// 		await triggerGetAllPosts().unwrap();
-			// 		break
-			// 	case 'current-post':
-			// 		await triggerGetPostById(id).unwrap()
-			// 		break
-			// 	default:
-			// 		throw new Error('Wrong argument cardFor');
-			// }
-			// if (cardFor === 'current-post') {
-			// 	await triggerGetPostById(id).unwrap()
-			// }
-			//
-			// if (cardFor === 'post') {
-			// 	await triggerGetAllPosts().unwrap();
-			// }
+			switch (cardFor) {
+				case 'post':
+					await triggerGetAllPosts().unwrap();
+					break
+				case 'current-post':
+					await triggerGetPostById(id).unwrap()
+					break
+				default:
+					throw new Error('Wrong argument cardFor');
+			}
 		} catch (error) {
 			if (hasErrorField(error)) {
 				setError(error.data.error)
