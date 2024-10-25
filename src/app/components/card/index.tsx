@@ -11,11 +11,11 @@ import { User } from '../user';
 import { formatToClientDate } from '../../../utils/format-to-client-date';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { Typogrpapy } from '../typogrpapy';
-import { ErrorMessage } from '../error-message'
-import { FcDislike } from 'react-icons/fc'
-import { MdOutlineFavoriteBorder } from 'react-icons/md'
-import { FaRegComment } from 'react-icons/fa'
-import { MetaInfo } from "../meta-info"
+import { ErrorMessage } from '../error-message';
+import { FcDislike } from 'react-icons/fc';
+import { MdOutlineFavoriteBorder } from 'react-icons/md';
+import { FaRegComment } from 'react-icons/fa';
+import { MetaInfo } from "../meta-info";
 
 
 type Props = {
