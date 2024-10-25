@@ -16,6 +16,7 @@ import { FcDislike } from 'react-icons/fc';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { FaRegComment } from 'react-icons/fa';
 import { MetaInfo } from "../meta-info";
+import { hasErrorField } from "../../../utils/has-error-field"
 
 
 type Props = {
@@ -51,10 +52,87 @@ export const Card: React.FC<Props> = ({
 	const [triggerGetAllPosts] = useLazyGetAllPostsQuery();
 	const [triggerGetPostById] = useLazyGetPostByIdQuery();
 	const [deletePost, deletePostStatus] = useDeletePostMutation();
-	const [deleteCommentm, deleteCommentStatus] = useDeleteCommentMutation();
+	const [deleteComment, deleteCommentStatus] = useDeleteCommentMutation();
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
 	const currentUser = useSelector(selectCurent);
+
+	const refetchPosts = async () => {
+		switch (cardFor) {
+			case 'post':
+				await triggerGetAllPosts().unwrap();
+				break
+			case 'current-post':
+				await triggerGetAllPosts().unwrap();
+				break
+			case 'comment':
+				await triggerGetPostById(id).unwrap();
+				break
+			default:
+				throw new Error('Wrong argument cardFor');
+		}
+	}
+
+	const handleDelete = async () => {
+		try {
+
+			switch (cardFor) {
+				case 'post':
+					await deletePost(id).unwrap();
+					await refetchPosts();
+					break
+				case 'current-post':
+					await deletePost(id).unwrap();
+					navigate('/');
+					break
+				case 'comment':
+					await deleteComment(commentId).unwrap();
+					await refetchPosts();
+					break
+				default:
+					throw new Error('Wrong argument cardFor');
+			}
+		} catch (error) {
+			if (hasErrorField(error)) {
+				setError(error.data.error);
+			} else {
+				setError(error as string);
+			}
+		}
+	};
+
+	const handleClick = async () => {
+		try {
+			likedByUser ?
+				await unlikePost(id).unwrap()
+			:
+				await likePost({ postId: id }).unwrap()
+			await refetchPosts();
+			// switch (cardFor) {
+			// 	case 'post':
+			// 		await triggerGetAllPosts().unwrap();
+			// 		break
+			// 	case 'current-post':
+			// 		await triggerGetPostById(id).unwrap()
+			// 		break
+			// 	default:
+			// 		throw new Error('Wrong argument cardFor');
+			// }
+			// if (cardFor === 'current-post') {
+			// 	await triggerGetPostById(id).unwrap()
+			// }
+			//
+			// if (cardFor === 'post') {
+			// 	await triggerGetAllPosts().unwrap();
+			// }
+		} catch (error) {
+			if (hasErrorField(error)) {
+				setError(error.data.error)
+			} else {
+				setError(error as string)
+			}
+		}
+	}
 
 	return (
 		<NextUiCard className='mb-5'>
@@ -68,11 +146,11 @@ export const Card: React.FC<Props> = ({
 					/>
 				</Link>
 				{authorId === currentUser?.id &&
-					<div className='cursor-pointer'>
+					<div className='cursor-pointer' onClick={handleDelete}>
 						{deletePostStatus.isLoading || deleteCommentStatus.isLoading ?
-								<Spinner />
-							:
-								<RiDeleteBinLine />
+							<Spinner />
+						:
+							<RiDeleteBinLine />
 						}
 					</div>
 				}
@@ -84,7 +162,7 @@ export const Card: React.FC<Props> = ({
 				cardFor !== 'comment' && (
 					<CardFooter className='gap-3'>
 						<div className='flex gap-5 items-center'>
-							<div>
+							<div onClick={handleClick}>
 								<MetaInfo
 									count={likesCount}
 									Icon={likedByUser ? FcDislike : MdOutlineFavoriteBorder} />
