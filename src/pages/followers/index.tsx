@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, CardBody } from '@nextui-org/react';
+
 import { User } from '../../app/components/user';
 import { selectCurent } from '../../features/user/userSlice';
 
@@ -30,4 +31,4 @@ export const Followers = () => {
 	) : (
 		<h2>You have no subscriptions</h2>
 	)
-}
+};

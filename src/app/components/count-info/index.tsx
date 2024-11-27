@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {
 	count: number;
 	title: string;
-}
+};
 
 export const CountInfo: React.FC<Props> = ({
 	count,
@@ -15,4 +15,4 @@ export const CountInfo: React.FC<Props> = ({
 			<span>{title}</span>
 		</div>
 	)
-}
+};

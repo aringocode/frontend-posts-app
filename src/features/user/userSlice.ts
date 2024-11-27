@@ -1,7 +1,8 @@
-import { User } from "../../app/types";
-import { createSlice } from "@reduxjs/toolkit";
-import { userApi } from "../../app/services/userApi";
-import { RootState } from "../../app/store";
+import { createSlice } from '@reduxjs/toolkit';
+
+import { User } from '../../app/types';
+import { userApi } from '../../app/services/userApi';
+import { RootState } from '../../app/store';
 
 interface InitialState {
 	user: User | null;
@@ -9,7 +10,7 @@ interface InitialState {
 	users: User[] | null;
 	current: User[] | null;
 	token?: string;
-}
+};
 
 const initialState: InitialState = {
 	user: null,

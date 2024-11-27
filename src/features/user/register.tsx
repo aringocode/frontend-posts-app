@@ -11,11 +11,11 @@ type Register = {
 	email: string;
 	name: string;
 	password: string;
-}
+};
 
 type Props = {
 	setSelected: (value: string) => void;
-}
+};
 
 export const Register: React.FC<Props> = ({ setSelected }) => {
 	const [register, { isLoading }] = useRegisterMutation();
@@ -83,4 +83,4 @@ export const Register: React.FC<Props> = ({ setSelected }) => {
 			</div>
 		</form>
 	)
-}
+};

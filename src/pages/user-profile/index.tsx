@@ -2,18 +2,18 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Image, useDisclosure, Button } from '@nextui-org/react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CiEdit } from 'react-icons/ci';
+import { MdOutlinePersonAddAlt1, MdOutlinePersonAddDisabled } from 'react-icons/md';
+
 import { resetUser, selectCurent } from '../../features/user/userSlice';
 import { useGetUserByIdQuery, useLazyCurrentQuery, useLazyGetUserByIdQuery } from '../../app/services/userApi';
 import { useFollowUserMutation, useUnfollowUserMutation } from '../../app/services/followApi';
 import { GoBack } from '../../app/components/go-back';
 import { BASE_URL } from '../../constants';
-import { CiEdit } from 'react-icons/ci';
-import { MdOutlinePersonAddAlt1, MdOutlinePersonAddDisabled } from 'react-icons/md';
 import { ProfileInfo } from '../../app/components/profile-info';
 import { CountInfo } from '../../app/components/count-info';
 import { formatToClientDate } from '../../utils/format-to-client-date';
 import { EditProfile } from '../../app/components/edit-profile';
-
 
 export const UserProfile = () => {
 	const { id } = useParams<{ id: string }>();
@@ -118,4 +118,4 @@ export const UserProfile = () => {
 			<EditProfile isOpen={isOpen} onClose={handleClose} user={data} />
 		</>
 	)
-}
+};

@@ -11,11 +11,11 @@ import { hasErrorField } from '../../utils/has-error-field';
 type Login = {
 	email: string;
 	password: string;
-}
+};
 
 type Props = {
 	setSelected: (value: string) => void;
-}
+};
 
 export const Login: React.FC<Props> = ({ setSelected }) => {
 	const navigate = useNavigate();
@@ -83,4 +83,4 @@ export const Login: React.FC<Props> = ({ setSelected }) => {
 			</div>
 		</form>
 	)
-}
+};

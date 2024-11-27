@@ -15,7 +15,7 @@ export type User = {
 	likes: Like[]
 	comments: Comment[]
 	isFollowing?: boolean
-}
+};
 
 export type Follows = {
 	id: string
@@ -23,7 +23,7 @@ export type Follows = {
 	followerId: string
 	following: User
 	followingId: string
-}
+};
 
 export type Post = {
 	id: string
@@ -35,7 +35,7 @@ export type Post = {
 	likedByUser: boolean
 	createdAt: Date
 	updatedAt: Date
-}
+};
 
 export type Like = {
 	id: string
@@ -43,7 +43,7 @@ export type Like = {
 	userId: string
 	post: Post
 	postId: string
-}
+};
 
 export type Comment = {
 	id: string
@@ -52,4 +52,4 @@ export type Comment = {
 	userId: string
 	post: Post
 	postId: string
-}
+};

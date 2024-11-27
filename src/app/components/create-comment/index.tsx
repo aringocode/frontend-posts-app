@@ -1,10 +1,11 @@
 import React from 'react';
-import { useLazyGetPostByIdQuery } from '../../services/postsApi';
-import { useForm, Controller } from 'react-hook-form';
-import { Button, Textarea } from '@nextui-org/react';
-import { ErrorMessage } from '../error-message';
 import { IoMdCreate } from 'react-icons/io';
 import { useParams } from 'react-router-dom';
+import { useForm, Controller } from 'react-hook-form';
+import { Button, Textarea } from '@nextui-org/react';
+import { useLazyGetPostByIdQuery } from '../../services/postsApi';
+
+import { ErrorMessage } from '../error-message';
 import { useCreateCommentMutation } from '../../services/commentsApi';
 
 export const CreateComment = () => {
@@ -29,9 +30,9 @@ export const CreateComment = () => {
 				await getPostById(id).unwrap();
 			}
 		} catch (error) {
-			console.log(error)
+			console.error(error)
 		}
-	})
+	});
 
 	return (
 		<form className='flex-grow' onSubmit={onSubmit}>

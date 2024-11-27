@@ -16,7 +16,7 @@ export const followApi = api.injectEndpoints({
 			})
 		})
 	})
-})
+});
 
 export const {
 	useFollowUserMutation,

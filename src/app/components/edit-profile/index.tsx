@@ -1,20 +1,15 @@
 import React, { useContext, useState } from 'react';
-import {
-	Button,
-	Modal,
-	ModalBody,
-	ModalContent,
-	ModalFooter,
-	ModalHeader,
-	Textarea,
-} from '@nextui-org/react';
-
-import { ThemeContext } from '../theme-provider';
-import { Controller, useForm } from 'react-hook-form';
-import { Input } from '../input';
-import { useParams } from 'react-router-dom';
-import { ErrorMessage } from '../error-message';
 import { MdOutlineEmail } from 'react-icons/md';
+import { useParams } from 'react-router-dom';
+import { Controller, useForm } from 'react-hook-form';
+
+import {
+	Button, Textarea,
+	Modal, ModalBody, ModalContent, ModalHeader,
+} from '@nextui-org/react';
+import { ThemeContext } from '../theme-provider';
+import { Input } from '../input';
+import { ErrorMessage } from '../error-message';
 import { hasErrorField } from '../../../utils/has-error-field';
 import { User } from '../../types';
 import { useUpdateUserMutation } from '../../services/userApi';
@@ -23,7 +18,7 @@ type Props = {
 	isOpen: boolean;
 	onClose: () => void;
 	user?: User;
-}
+};
 
 export const EditProfile: React.FC<Props> = ({
 	isOpen = false,
@@ -46,7 +41,7 @@ export const EditProfile: React.FC<Props> = ({
 			bio: user?.bio,
 			location: user?.location,
 		},
-	})
+	});
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files !== null) {
@@ -159,4 +154,4 @@ export const EditProfile: React.FC<Props> = ({
 			</ModalContent>
 		</Modal>
 	)
-}
+};

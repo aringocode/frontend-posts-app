@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { Card as NextUiCard, CardHeader, Spinner, CardBody, CardFooter } from '@nextui-org/react';
 import { useLikePostMutation, useUnlikePostMutation } from '../../services/likesApi';
 import { useDeletePostMutation, useLazyGetAllPostsQuery, useLazyGetPostByIdQuery } from '../../services/postsApi';
 import { useDeleteCommentMutation } from '../../services/commentsApi';
-import { useNavigate, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { selectCurent } from '../../../features/user/userSlice';
 import { User } from '../user';
 import { formatToClientDate } from '../../../utils/format-to-client-date';
@@ -15,9 +15,8 @@ import { ErrorMessage } from '../error-message';
 import { FcDislike } from 'react-icons/fc';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { FaRegComment } from 'react-icons/fa';
-import { MetaInfo } from "../meta-info";
-import { hasErrorField } from "../../../utils/has-error-field"
-
+import { MetaInfo } from '../meta-info';
+import { hasErrorField } from '../../../utils/has-error-field';
 
 type Props = {
 	avatarUrl: string;
@@ -32,7 +31,6 @@ type Props = {
 	cardFor: 'comment' | 'post' | 'current-post';
 	likedByUser?: boolean;
 }
-
 
 export const Card: React.FC<Props> = ({
 	avatarUrl = '',
@@ -71,24 +69,23 @@ export const Card: React.FC<Props> = ({
 			default:
 				throw new Error('Wrong argument cardFor');
 		}
-	}
+	};
 
 	const handleDelete = async () => {
 		try {
-
 			switch (cardFor) {
 				case 'post':
 					await deletePost(id).unwrap();
 					await refetchPosts();
-					break
+					break;
 				case 'current-post':
 					await deletePost(id).unwrap();
 					navigate('/');
-					break
+					break;
 				case 'comment':
 					await deleteComment(commentId).unwrap();
 					await refetchPosts();
-					break
+					break;
 				default:
 					throw new Error('Wrong argument cardFor');
 			}
@@ -124,7 +121,7 @@ export const Card: React.FC<Props> = ({
 				setError(error as string)
 			}
 		}
-	}
+	};
 
 	return (
 		<NextUiCard className='mb-5'>
@@ -150,23 +147,21 @@ export const Card: React.FC<Props> = ({
 			<CardBody className='px-3 py-2 mb-5'>
 				<Typogrpapy>{ content }</Typogrpapy>
 			</CardBody>
-			{
-				cardFor !== 'comment' && (
-					<CardFooter className='gap-3'>
-						<div className='flex gap-5 items-center'>
-							<div onClick={handleClick}>
-								<MetaInfo
-									count={likesCount}
-									Icon={likedByUser ? FcDislike : MdOutlineFavoriteBorder} />
-							</div>
-							<Link to={`/posts/${id}`}>
-								<MetaInfo count={commentsCount} Icon={FaRegComment} />
-							</Link>
+			{cardFor !== 'comment' && (
+				<CardFooter className='gap-3'>
+					<div className='flex gap-5 items-center'>
+						<div onClick={handleClick}>
+							<MetaInfo
+								count={likesCount}
+								Icon={likedByUser ? FcDislike : MdOutlineFavoriteBorder} />
 						</div>
-						<ErrorMessage error={error} />
-					</CardFooter>
-				)
-			}
+						<Link to={`/posts/${id}`}>
+							<MetaInfo count={commentsCount} Icon={FaRegComment} />
+						</Link>
+					</div>
+					<ErrorMessage error={error} />
+				</CardFooter>
+			)}
 		</NextUiCard>
 	)
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import { useCurrentQuery } from '../../app/services/userApi';
 import { Spinner } from '@nextui-org/react';
+
+import { useCurrentQuery } from '../../app/services/userApi';
 
 export const AuthGuard = ({
 	children
@@ -12,4 +13,4 @@ export const AuthGuard = ({
 	}
 
 	return children;
-}
+};

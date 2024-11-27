@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, CardBody } from '@nextui-org/react';
+
 import { User } from '../../app/components/user';
 import { selectCurent } from '../../features/user/userSlice';
 

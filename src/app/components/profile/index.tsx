@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Card, CardBody, CardHeader, Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { MdAlternateEmail } from 'react-icons/md';
+
 import { selectCurent } from '../../../features/user/userSlice';
 import { BASE_URL } from '../../../constants';
 
@@ -10,10 +11,10 @@ export const Profile = () => {
 	const current = useSelector(selectCurent);
 
 	if (!current) {
-		return null
+		return null;
 	}
 
-	const { name, email, avatarUrl, id} = current;
+	const { name, email, avatarUrl, id } = current;
 
 	return (
 		<Card className='py-4 w-[302px]'>
@@ -21,7 +22,7 @@ export const Profile = () => {
 				<Image
 					alt='Card profile'
 					className='object-cover rounded-xl'
-					src={ `${BASE_URL}${avatarUrl}` }
+					src={`${BASE_URL}${avatarUrl}`}
 					width={370}
 				/>
 			</CardHeader>
@@ -36,4 +37,4 @@ export const Profile = () => {
 			</CardBody>
 		</Card>
 	)
-}
+};

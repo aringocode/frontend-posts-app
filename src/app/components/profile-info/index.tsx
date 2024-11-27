@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {
 	title: string;
 	info?: string;
-}
+};
 
 export const ProfileInfo: React.FC<Props> = ({
 	title,
@@ -19,4 +19,4 @@ export const ProfileInfo: React.FC<Props> = ({
 			<span className='text-gray-500 mr-2'>{title}</span>{info}
 		</p>
 	)
-}
+};

@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import { Button, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/react'
-
-import { ThemeContext } from '../theme-provider';
+import { CiLogout } from 'react-icons/ci';
+import { useNavigate } from 'react-router-dom';
 import { FaRegMoon } from 'react-icons/fa';
 import { LuSunMedium } from 'react-icons/lu';
-import { useDispatch, useSelector } from 'react-redux'
-import { logout, selectIsAuthenticated } from '../../../features/user/userSlice'
-import { useNavigate } from 'react-router-dom';
-import { CiLogout } from 'react-icons/ci';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/react';
+
+import { ThemeContext } from '../theme-provider';
+import { logout, selectIsAuthenticated } from '../../../features/user/userSlice';
 
 export const Header = () => {
 	const { theme, toggleTheme } = useContext(ThemeContext);
@@ -19,7 +19,7 @@ export const Header = () => {
 		dispatch(logout());
 		localStorage.removeItem('token');
 		navigate('/auth');
-	}
+	};
 
 	return (
 		<Navbar>
@@ -40,10 +40,9 @@ export const Header = () => {
 					  <Button variant='flat' className='gap-2' onClick={handleLogout}>
 					    <CiLogout />
 					    Logout
-					</Button>
-					}
+					</Button>}
 				</NavbarItem>
 			</NavbarContent>
 		</Navbar>
 	)
-}
+};

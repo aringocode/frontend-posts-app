@@ -1,10 +1,10 @@
 import React from 'react';
-import { useCreatePostMutation, useLazyGetAllPostsQuery } from "../../services/postsApi";
-import { useForm, Controller } from "react-hook-form";
-import { Button, Textarea } from '@nextui-org/react';
-import { ErrorMessage } from '../error-message';
 import { IoMdCreate } from 'react-icons/io';
+import { useForm, Controller } from 'react-hook-form';
+import { Button, Textarea } from '@nextui-org/react';
 
+import { useCreatePostMutation, useLazyGetAllPostsQuery } from '../../services/postsApi';
+import { ErrorMessage } from '../error-message';
 
 export const CreatePost = () => {
 	const [createPost] = useCreatePostMutation();
@@ -27,14 +27,14 @@ export const CreatePost = () => {
 		} catch (error) {
 			console.log(error)
 		}
-	})
+	});
 
 	return (
 		<form className='flex-grow' onSubmit={onSubmit}>
 			<Controller
-				name="post"
+				name='post'
 				control={control}
-				defaultValue=""
+				defaultValue=''
 				rules={{ required: 'Required field' }}
 				render={({ field }) => (
 					<Textarea
@@ -56,4 +56,4 @@ export const CreatePost = () => {
 			</Button>
 		</form>
 	)
-}
+};

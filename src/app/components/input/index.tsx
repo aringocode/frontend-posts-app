@@ -10,7 +10,7 @@ type Props = {
 	endContent?: JSX.Element;
 	required?: string;
 	type?: string;
-}
+};
 
 export const Input: React.FC<Props> = (
 	{
@@ -20,7 +20,6 @@ export const Input: React.FC<Props> = (
 		type,
 		control,
 		required = '',
-		endContent,
 	}
 ) => {
 	const { field, fieldState: { invalid }, formState: { errors } } = useController({

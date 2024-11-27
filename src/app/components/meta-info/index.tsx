@@ -4,7 +4,7 @@ import { IconType } from 'react-icons';
 type Props = {
 	count: number;
 	Icon: IconType
-}
+};
 
 export const MetaInfo: React.FC<Props> = ({
 	count,
@@ -18,4 +18,4 @@ export const MetaInfo: React.FC<Props> = ({
 			</p>
 		</div>
 	)
-}
+};
